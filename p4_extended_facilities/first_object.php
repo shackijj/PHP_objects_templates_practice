@@ -6,9 +6,6 @@ interface Chargeable {
 
 class ShopProduct implements Chargeable {
 
-    const AVAILABLE = 0;
-    const OUT_OF_STOCK = 1;
-
     private $id = 0;
     private $title;
     private $producerMainName;
@@ -191,9 +188,10 @@ class TextProductWriter extends ShopProductWriter {
     }
 }
 
+
 // Client code
 
-$dsn = "sqlite://home/kirill/learn_php/products.db";
+$dsn = "sqlite://home/kirill/PHP_objects_templates_practice/products.db";
 $pdo = new PDO($dsn, null, null);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $obj = ShopProduct::getInstance(1, $pdo);
@@ -201,6 +199,5 @@ $obj = ShopProduct::getInstance(1, $pdo);
 $xml_writer = new XmlProductWriter();
 $xml_writer->addProduct($obj);
 $xml_writer->write();
-
 
 ?>
