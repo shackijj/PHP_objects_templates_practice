@@ -136,4 +136,35 @@ class ApplicationRegistry extends Registry {
     }
 }
 
+class MemApplicationRegistry extends Registry {
+    private static $instance = null;
+    private $values = array();
+    private $id;
 
+    function __construct() {}
+
+    static function instance() {
+        if ( is_null(self::$instance) ) {
+                     self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+    protected function get( $key ) {
+        return \apc_fetch( $key );
+    }
+
+    protected function set( $key, $val ) {
+        return \apc_store( $key, $value );
+    }
+
+    function setDSN( $dsn ) {
+        self::instance()->set( "dsn", $dsn );
+    }
+
+    function getDSN() {
+        return self::$instance()->get("dsn");
+    }
+}
+
+?>
