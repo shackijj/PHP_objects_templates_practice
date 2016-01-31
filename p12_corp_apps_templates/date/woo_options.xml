@@ -1,0 +1,3 @@
+<config>
+	<dsn>mysql://localhost</dsn>
+</config>

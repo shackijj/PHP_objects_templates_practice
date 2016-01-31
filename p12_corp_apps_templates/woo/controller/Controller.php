@@ -2,6 +2,10 @@
 
 namespace woo\controller;
 
+require("woo/base/Registry.php");
+require("woo/base/Exceptions.php");
+require("woo/controller/CommandResolver.php");
+
 class Controller {
 
     private $applicationHelper;
@@ -14,14 +18,13 @@ class Controller {
     }
 
     function init() {
-        $applictionHelper = 
-            ApplicationHelper::$instance();
+        $applicationHelper = ApplicationHelper::instance();
         $applicationHelper->init();
     }
 
     function handleRequest() {
         $request = \woo\base\ApplicationRegistry::getRequest();
-        $cmd_r = new woo\command\CommandResolver();
+        $cmd_r = new \woo\command\CommandResolver();
         $cmd = $cmd_r->getCommand( $request );
         $cmd->execute( $request );
     }
@@ -53,7 +56,10 @@ class ApplicationHelper {
                        "Configuration file not found");
         $options = @SimpleXml_load_file( $this->config );
         $dsn = (string) $options->dsn;
-        $this->ensure( $options instanceof SimpleXMLElement,
+
+        var_dump( $options );    
+ 
+        $this->ensure( $options instanceof \SimpleXMLElement,
                        "Configuration file is broken");
         $this->ensure( $dsn, "DSN not found" );
         \woo\base\ApplicationRegistry::setDSN( $dsn );

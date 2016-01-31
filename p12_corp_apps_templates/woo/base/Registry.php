@@ -2,6 +2,8 @@
 
 namespace woo\base;
 
+require( "woo/controller/Request.php" );
+
 abstract class Registry {
     abstract protected function get( $key );
     abstract protected function set( $key, $val );
@@ -77,9 +79,10 @@ class SessionRegistry extends Registry {
 
 class ApplicationRegistry extends Registry {
     private static $instance = null;
-    private $freezedir = "data";
+    private $freezedir = "date";
     private $values    = array();
     private $mtimes    = array();
+    public $request;
 
     private function __construct() {}
 
@@ -113,6 +116,7 @@ class ApplicationRegistry extends Registry {
     protected function set( $key, $val ) {
         $this->values[$key] = $val;
         $path = $this->freezedir . DIRECTORY_SEPARATOR . $key;
+        var_dump( $path );
         file_put_contents( $path, serialize( $val ) );
         $this->mtimes[$key] = time();
     }
@@ -122,12 +126,12 @@ class ApplicationRegistry extends Registry {
     }
 
     function getDSN() {
-        return self::$instance()->get("dsn");
+        return self::instance()->get("dsn");
     }
 
 
     static function getRequest() {
-        $inst = self::$instance();
+        $inst = self::instance();
         if ( is_null( $inst->request ) ) {
             $inst->request = new \woo\controller\Request();
         }

@@ -2,6 +2,8 @@
 
 namespace woo\command;
 
+require ( "woo/command/Command.php" );
+
 class CommandResolver {
     private static $base_cmd = null;
     private static $default_cmd = null;
@@ -16,7 +18,7 @@ class CommandResolver {
     function getCommand( \woo\controller\Request $request ) {
         $cmd = $request->getProperty( 'cmd' );
         $sep = DIRECTORY_SEPARATOR;
-        if ( ! cmd ) {
+        if ( ! $cmd ) {
             return self::$default_cmd;
         }
         $cmd = str_replace( array('.' . $sep), "", $cmd );
