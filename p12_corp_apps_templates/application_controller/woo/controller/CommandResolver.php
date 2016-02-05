@@ -23,16 +23,22 @@ class CommandResolver {
         }
         $cmd = str_replace( array('.' . $sep), "", $cmd );
         $filepath = "woo{$sep}command{$sep}{$cmd}.php";
-        $classname = "woo\\command\\$cmd";
+        $classname = "woo\command\\$cmd";
         if ( file_exists( $filepath ) ) {
             @require_once( $filepath );
-            if ( $cmd_class->isSubClassOf( self::$base_cmd ) ) {
-                 return $cmd_class->newInstance();
-            } else {
-                $request->addFeedback( "Object Command of command '$cmd' not found" );
+            if ( class_exists($classname) ) {
+                $cmd_class =  new \ReflectionClass($classname);
+
+                if ( $cmd_class->isSubClassOf( self::$base_cmd ) ) {
+                     return $cmd_class->newInstance();
+                } else {
+                    $request->addFeedback( "Object Command of command '$cmd' not found" );
+                }
             }
         }
         $request->addFeedback( "Command 'cmd' not found" );
         return clone self::$default_cmd;
     }
 }
+
+?>
