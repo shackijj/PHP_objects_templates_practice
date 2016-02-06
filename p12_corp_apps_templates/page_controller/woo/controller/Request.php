@@ -3,7 +3,7 @@
 namespace woo\controller;
 
 class Request {
-    private $properties;
+    private $properties = array();
     private $feedback = array();
 
     function __construct() {
@@ -36,6 +36,18 @@ class Request {
 
     function addFeedback( $msg ) {
         array_push( $this->feedback, $msg );
+    }
+
+    function setCommand( $command ) {
+        $this->setProperty('LAST_COMMAND', $command );
+    }
+
+    function setObject( $name, $obj ) {
+        $this->setProperty($name, $obj);
+    }
+
+    function getLastCommand() {
+        return $this->getProperty('LAST_COMMAND');
     }
 
     function getFeedback() {

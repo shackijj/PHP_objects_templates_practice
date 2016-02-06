@@ -2,7 +2,8 @@
 
 namespace woo\base;
 
-require( "woo/controller/Request.php" );
+require_once( "woo/controller/Request.php" );
+require_once( "woo/controller/Controller.php" );
 
 abstract class Registry {
     abstract protected function get( $key );
@@ -83,6 +84,7 @@ class ApplicationRegistry extends Registry {
     private $values    = array();
     private $mtimes    = array();
     public $request;
+    private $app_controller;
 
     private function __construct() {}
 
@@ -90,7 +92,7 @@ class ApplicationRegistry extends Registry {
         if ( is_null(self::$instance) ) {
                      self::$instance = new self();
         }
-        return self::$instance;
+        return self::$instance;        
     }
 
     protected function get( $key ) {
@@ -129,6 +131,20 @@ class ApplicationRegistry extends Registry {
         return self::instance()->get("dsn");
     }
 
+    static function setControllerMap( \woo\controller\ControllerMap $map ) {
+       $inst = self::instance();
+       if ( is_null( $inst->app_controller ) ) {
+           $inst->app_controller = new \woo\controller\AppController( $map );
+       }
+    }
+
+    static function appController() {
+       $inst = self::instance();
+       if ( is_null( $inst->app_controller ) ) {
+           throw new \Exception("App controller is not set");
+       }
+       return $inst->app_controller;
+    }
 
     static function getRequest() {
         $inst = self::instance();

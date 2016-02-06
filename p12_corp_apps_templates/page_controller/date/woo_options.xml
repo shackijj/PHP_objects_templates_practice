@@ -6,23 +6,26 @@
 		<view status="CMD_ERROR">error</view>
 
 		<command name="ListVenues">
+                        <classroot name="ListVenues" />
 			<view>listvenues</view>
 		</command>
 
 		<command name="QuickAddVenue">
 			<classroot name="AddVenue" />
-			<view>quickadd</view>
+			<view>quick_add</view>
 		</command>
 
 		<command name="AddVenue">
-			<view>addvenue</view>
+                        <classroot name="AddVenue"/>
+			<view>add_venue</view>
 			<status value="CMD_OK">
 				<forward>AddSpace</forward>
 			</status>
 		</command>
 
 		<command name="AddSpace">
-			<view>addspace</view>
+                        <classroot name="AddSpace" />
+			<view>add_space</view>
 			<status value="CMD_OK">
 				<forward>ListVenues</forward>
 			</status>

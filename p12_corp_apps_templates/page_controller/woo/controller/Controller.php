@@ -9,7 +9,7 @@ require("woo/controller/CommandResolver.php");
 class Controller {
 
     private $applicationHelper;
-    private function __() {}
+    private function __construct() {}
 
     static function run() {
         $instance = new Controller();
@@ -18,7 +18,7 @@ class Controller {
     }
 
     function init() {
-        $applicationHelper = ApplicationHelper::instance();
+        $applicationHelper = \woo\controller\ApplicationHelper::instance();
         $applicationHelper->init();
     }
 
@@ -33,6 +33,7 @@ class Controller {
     }
 
     function invokeView( $target ) {
+        print "Invoking view! \n";
         include( "woo/view/$target.php" );
         exit;
     }
@@ -52,14 +53,16 @@ class ApplicationHelper {
     }
 
     function init() {
+        print "ApplicationHelper Init\n";
+        $this->getOptions();
         $dsn = \woo\base\ApplicationRegistry::getDSN();
         if ( ! is_null( $dsn ) ) {
             return;
         }
-        $this->getOptions();
     }
 
     private function getOptions() {
+   
         $this->ensure( file_exists( $this->config ),
                        "Configuration file not found");
         $options = @SimpleXml_load_file( $this->config );
@@ -70,19 +73,42 @@ class ApplicationHelper {
         $this->ensure( $dsn, "DSN not found" );
         \woo\base\ApplicationRegistry::setDSN( $dsn );
 
+        print \woo\base\ApplicationRegistry::getDSN();
+
         $map = new ControllerMap();
 
-        foreach( $options->controll->view as $default_view ) {
+        foreach( $options->control->view as $default_view ) {
             $stat_str = trim($default_view['status']);
-            $status = \woo\command\Command::statuses( $stat_str );
+            
+            if ( empty($stat_str ) ) {
+                $status = \woo\command\Command::statuses();
+            } else {
+                $status = \woo\command\Command::statuses( $stat_str );
+            }
             $map->addView( (string) $default_view, 'default', $status );
         }
-
-        foreach( $options->controll->command as $command ) {
-            // Add other commands to map.
-        }
-        \woo\base\ApplicationRegistry::setControllerMap( $map );
+        
+        foreach( $options->control->command as $command ) {
             
+            if (! empty($command['name']) && $command->view ) {
+                $command_name = trim($command['name']);
+                $map->addView( (string) $command->view, $command_name);
+                $map->addClassroot($command_name, (string) $command->classroot['name']);
+
+                foreach($command->status as $cmdstat) {
+                    $stat_str = trim( $cmdstat['value'] );
+                    if ( empty($stat_str ) ) {
+                        $status = \woo\command\Command::statuses();
+                    } else {
+                        $status = \woo\command\Command::statuses( $stat_str );
+                    }
+                    
+                    $map->addForward( (string) $command_name, $status, (string) $cmdstat->forward );
+                }
+            }
+        } 
+        var_dump($map);
+        \woo\base\ApplicationRegistry::setControllerMap( $map );    
     }
 
     private function ensure( $expr, $message ) {
@@ -173,7 +199,7 @@ class AppController {
         $resource = $this->controllerMap->$acquire( $cmd_str, 0 );
     
         if ( is_null( $resource ) ) {
-            $resource = $this->controllerMap->$acquite( 'default', 0 );
+            $resource = $this->controllerMap->$acquire( 'default', 0 );
         }
         return $resource;
     }
@@ -215,7 +241,7 @@ class AppController {
         if ( file_exists( $filepath ) ) {
             require_once ( $filepath );
             if ( class_exists( $classname ) ) {
-                $cmd_class = new ReflectionClass($classname);
+                $cmd_class = new \ReflectionClass($classname);
                 if ($cmd_class->isSubClassOf( self::$base_cmd ) ) {
                     return $cmd_class->newInstance();
                 }

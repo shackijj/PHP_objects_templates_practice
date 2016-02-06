@@ -1,3 +1,7 @@
+<?php
+    require_once( "woo/base/Registry.php" );
+    $request = \woo\base\ApplicationRegistry::getRequest();
+?>
 <html>
 <head>
     <title>Woo! It is the Woo Application</title>
