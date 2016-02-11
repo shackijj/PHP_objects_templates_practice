@@ -192,12 +192,21 @@ class AppController {
     private function getResource( Request $req, $res ) {
         $cmd_str = $req->getProperty( 'cmd' );
         $previous = $req->getLastCommand();
+        var_dump($previous);
         $status = $previous->getStatus();
  
         if ( ! isset( $status) || ! is_int( $status ) ) { $status = 0; }
         $acquire = "get$res";
-        $resource = $this->controllerMap->$acquire( $cmd_str, 0 );
-    
+        $resource = $this->controllerMap->$acquire( $cmd_str, $status );
+
+        if ( is_null( $resource ) ) {
+            $resource = $this->controllerMap->$acquire( $cmd_str, 0 );
+        }
+
+        if ( is_null( $resource ) ) {
+            $resource = $this->controllerMap->$acquire( 'default', $status );
+        }
+
         if ( is_null( $resource ) ) {
             $resource = $this->controllerMap->$acquire( 'default', 0 );
         }
