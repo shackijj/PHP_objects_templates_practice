@@ -42,6 +42,10 @@ class Request {
         $this->setProperty('LAST_COMMAND', $command );
     }
 
+    function getObject( $name ) {
+        return $this->getProperty( $name );
+    }
+
     function setObject( $name, $obj ) {
         $this->setProperty($name, $obj);
     }
