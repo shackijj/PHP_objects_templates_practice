@@ -26,6 +26,13 @@ abstract class DomainObject {
         return HelperFactory::getCollection( $type );
     }
 
+    static function getFinder( $type=null ) {
+        if ( is_null( $type ) ) {
+            return HelperFactory::getFinder( get_called_class() );
+        }
+        return HelperFactory::getFinder( $type );
+    }
+
     function collection() {
         return self::getCollection( get_class( $this ) );
     }

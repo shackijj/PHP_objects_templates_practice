@@ -50,7 +50,6 @@ class VenueMapper extends Mapper {
     function selectAllStmt() {
         return $this->selectAllStmt;
     }
-
 }
 
 ?>

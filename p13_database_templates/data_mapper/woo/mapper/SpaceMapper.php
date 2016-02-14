@@ -3,7 +3,7 @@
 namespace woo\mapper;
 
 require_once( "woo/mapper/Mapper.php" );
-require_once( "woo/mapper/SpaceCollection.php" );
+require_once( "woo/mapper/Collections.php" );
 
 class SpaceMapper extends Mapper {
     function __construct() {
@@ -53,6 +53,10 @@ class SpaceMapper extends Mapper {
     function findByVenue( $vid ) {
         $this->findByVenueStmt->execute( array($vid) );
         return new SpaceCollection( $this->findByVenueStmt->fetchAll(), $this );
+    }
+
+    function selectAllStmt() {
+       return $this->selectAllStmt;
     }
 }
 
