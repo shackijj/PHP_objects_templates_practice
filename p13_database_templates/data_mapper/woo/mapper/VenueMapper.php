@@ -35,7 +35,7 @@ class VenueMapper extends Mapper {
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
         $object->setId( $id );
-    }
+    } 
 
     function update( \woo\domain\DomainObject $object ) {
         $values = array( $object->getName(),

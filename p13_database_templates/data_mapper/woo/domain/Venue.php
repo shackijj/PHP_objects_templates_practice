@@ -3,6 +3,7 @@
 namespace woo\domain;
 
 require_once( "woo/domain/DomainObject.php" );
+require_once( "woo/domain/Space.php" );
 
 class Venue extends DomainObject {
     private $name;
@@ -20,7 +21,8 @@ class Venue extends DomainObject {
 
     function getSpaces() {
         if ( is_null( $this->spaces ) ) {
-            $this->spaces = self::getCollection( "\woo\domain\Space" );
+            $finder = self::getFinder( "woo\domain\Space" );
+            $this->spaces = $finder->findByVenue( $this->getId() );
         }
         return $this->spaces;
     }

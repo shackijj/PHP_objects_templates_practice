@@ -20,7 +20,7 @@ abstract class DomainObject {
 
     static function getCollection( $type=null ) {
         if ( is_null( $type ) ) {
-                                                 // late static binding
+            // late static binding
             return HelperFactory::getCollection( get_called_class() );
         }
         return HelperFactory::getCollection( $type );
@@ -31,6 +31,14 @@ abstract class DomainObject {
             return HelperFactory::getFinder( get_called_class() );
         }
         return HelperFactory::getFinder( $type );
+    }
+
+    function markDirty() {
+        return null;
+    }
+
+    function finder() {
+        return self::getFinder( get_class( $this ) );
     }
 
     function collection() {

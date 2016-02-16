@@ -14,9 +14,9 @@ abstract class Mapper {
             if ( is_null( $dsn ) ) {
                 throw new \woo\base\AppException( "DSN not defined." );
             }
-        }
-        self::$PDO = new \PDO( $dsn );
-        self::$PDO->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            self::$PDO = new \PDO( $dsn );
+            self::$PDO->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        }    
     }
 
     function find( $id ) {

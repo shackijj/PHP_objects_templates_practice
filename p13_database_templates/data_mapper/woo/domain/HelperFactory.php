@@ -23,7 +23,7 @@ interface EventCollection extends \Iterator {
 class HelperFactory {
     public function getCollection( $type ) {
         $type = preg_replace( '|^.*\\\|', "", $type );
-        print $collection_class;
+        $collection_class = "\\woo\\mapper\\{$type}Collection";
         if ( class_exists( $collection_class ) ) {
             return new $collection_class();
         }

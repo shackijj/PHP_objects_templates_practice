@@ -13,7 +13,7 @@ class SpaceMapper extends Mapper {
         $this->updateStmt =      self::$PDO->prepare(
                             "UPDATE space SET name=?, id=?, venue=? WHERE id=?");
         $this->insertStmt =      self::$PDO->prepare(
-                            "INSERT into space ( name, venue ) values ( ? )");
+                            "INSERT into space ( name, venue ) values ( ?, ? )");
         $this->selectAllStmt =   self::$PDO->prepare(
                             "SELECT * FROM space");
         $this->findByVenueStmt = self:: $PDO->prepare(

@@ -12,7 +12,7 @@ class Controller {
     private $applicationHelper;
     private function __construct() {}
 
-    static function run() {
+    static function run() {             
         $instance = new Controller();
         $instance->init();
         $instance->handleRequest();

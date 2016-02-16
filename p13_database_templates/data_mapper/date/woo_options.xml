@@ -1,5 +1,5 @@
 <config>
-	<dsn>sqlite://var/www/woo/woo.db</dsn>
+        <dsn>sqlite://var/www/zadstra/p13_database_templates/data_mapper/woo.db</dsn>
 	<control>
 		<view>main</view>
 		<view status="CMD_OK">main</view>

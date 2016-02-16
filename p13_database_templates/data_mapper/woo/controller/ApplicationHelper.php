@@ -16,7 +16,7 @@ class ApplicationHelper {
     }
 
     function init() {
-        $this->getOptions();
+        $this->getOptions();    
         $dsn = \woo\base\ApplicationRegistry::getDSN();
         if ( ! is_null( $dsn ) ) {
             return;
@@ -24,10 +24,9 @@ class ApplicationHelper {
     }
 
     private function getOptions() {
-   
         $this->ensure( file_exists( $this->config ),
-                       "Configuration file not found");
-        $options = @SimpleXml_load_file( $this->config );
+                "Configuration file not found");
+        $options = \SimpleXml_load_file( $this->config );
         $dsn = (string) $options->dsn;
 
         $this->ensure( $options instanceof \SimpleXMLElement,

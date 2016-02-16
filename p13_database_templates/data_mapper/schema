@@ -1,5 +1,5 @@
 CREATE TABLE 'venue' (
-	id int primary key,
+	id integer primary key autoincrement,
 	name text
 );
 
