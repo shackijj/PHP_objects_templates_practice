@@ -2,7 +2,7 @@
 
 namespace woo\command;
 
-require( "woo/domain/Space.php" );
+require_once( "woo/domain/Space.php" );
 
 class AddSpace extends Command {
 
@@ -13,7 +13,13 @@ class AddSpace extends Command {
             $request->addFeedback( "Space is not defined" );
             return self::statuses('CMD_INSUFFICIENT_DATA');
         } else {
-            $space_obj = new \woo\domain\Space( null, $name, $venue_id );
+            $space_obj = new \woo\domain\Space( $name, $venue_id );
+            $venue = $request->getObject( "venue" );
+            $space_obj->setVenue( $venue );
+
+            $mapper = $space_obj->finder();
+            $mapper->insert( $space_obj );
+
             $request->setObject( 'space', $space_obj );
             $request->addFeedback("'$name' added to ({$space_obj->getId()})" );
             return self::statuses('CMD_OK');

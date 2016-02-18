@@ -27,6 +27,7 @@ abstract class DomainObject {
     }
 
     static function getFinder( $type=null ) {
+        print get_called_class() . "\n";
         if ( is_null( $type ) ) {
             return HelperFactory::getFinder( get_called_class() );
         }
