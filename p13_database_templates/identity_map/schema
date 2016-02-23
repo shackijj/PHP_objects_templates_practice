@@ -1,0 +1,18 @@
+CREATE TABLE 'venue' (
+	id integer primary key autoincrement,
+	name text
+);
+
+CREATE TABLE 'space' (
+	id int primary key, 
+	venue int default null,
+	name text
+);
+
+CREATE TABLE 'event' (
+	id int primary key,
+	space int default null,
+	start long,
+	duration int,
+	name text
+);
