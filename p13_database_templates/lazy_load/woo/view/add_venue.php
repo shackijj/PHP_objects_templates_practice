@@ -1,6 +1,6 @@
 <?php
-    require_once( "woo/base/Registry.php" );
-    $request = \woo\base\ApplicationRegistry::getRequest();
+    require_once( "woo/view/ViewHelper.php" );
+    $request = \woo\view\ViewHelper::getRequest();
 ?>
 
 <html>
@@ -20,10 +20,9 @@
     </tr>
   </table>
 
-  <form action="index.php" method="get">
-    <input type="hidden" name="cmd" value="AddVenue" />
-    <input type="hidden" name="submitted" value="yes" />
+  <form method="post">
     <input type="text" name="venue_name" />
+    <input type="submit" value="submit" />
   </form>
 
  </body>

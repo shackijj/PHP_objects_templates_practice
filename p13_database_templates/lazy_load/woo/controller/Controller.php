@@ -4,8 +4,8 @@ namespace woo\controller;
 
 require_once("woo/base/Registry.php");
 require_once("woo/base/Exceptions.php");
-require_once("woo/controller/CommandResolver.php");
 require_once("woo/controller/ApplicationHelper.php");
+require_once("woo/domain/ObjectWatcher.php");
 
 class Controller {
 
@@ -19,17 +19,18 @@ class Controller {
     }
 
     function init() {
-        $applicationHelper = \woo\controller\ApplicationHelper::instance();
+        $applicationHelper = ApplicationHelper::instance();
         $applicationHelper->init();
     }
 
     function handleRequest() {
-        $request = \woo\base\ApplicationRegistry::getRequest();
+        $request = new Request();
         $app_c = \woo\base\ApplicationRegistry::appController();
         
         while( $cmd = $app_c->getCommand( $request ) ) {
             $cmd->execute( $request );
         }
+        \woo\domain\ObjectWatcher::instance()->performOperations();
         $this->invokeView( $app_c->getView( $request ) );
     }
 
@@ -45,14 +46,17 @@ class ControllerMap {
     private $classrootMap = array();
 
     function addClassroot( $command, $classroot ) {
-        $this->classrootMap[$command] = $classroot;
+        if ( isset( $this->classrootMap[$command] ) ) {
+            return $this->classrootMap[$command];
+        }
+        return $command;
     }
 
     function getClassroot( $command ) {
         if ( isset( $this->classrootMap[$command] ) ) {
             return $this->classrootMap[$command];
         }
-        return null;
+        return $command;
     }
 
     function addView( $view, $command='default', $status=0 ) {
@@ -114,7 +118,7 @@ class AppController {
         $previous = $req->getLastCommand();
         $status = $previous->getStatus();
  
-        if ( ! isset( $status) || ! is_int( $status ) ) { $status = 0; }
+        if ( ! $status ) { $status = 0; }
         $acquire = "get$res";
         $resource = $this->controllerMap->$acquire( $cmd_str, $status );
 
@@ -149,7 +153,7 @@ class AppController {
         $cmd_obj = $this->resolveCommand( $cmd );
         if ( is_null( $cmd_obj ) ) {
             throw new \woo\base\AppException(
-                "Command '$cmd' not found!"
+                "Can't resolve {$cmd}!"
             );
         }
 
@@ -163,6 +167,7 @@ class AppController {
     }
 
     function resolveCommand( $cmd ) {
+
         $classroot = $this->controllerMap->getClassroot( $cmd );
         $filepath = "woo/command/$classroot.php";
         $classname = "\woo\command\\$classroot";

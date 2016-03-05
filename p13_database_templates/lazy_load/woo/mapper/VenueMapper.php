@@ -24,9 +24,9 @@ class VenueMapper extends Mapper {
     protected function doCreateObject( array $array ) {
         $obj = new \woo\domain\Venue( $array['id'] );
         $obj->setName( $array['name'] );
-        $space_mapper = new SpaceMapper();
-        $space_collection = $space_mapper->findByVenue( $array['id'] );
-        $obj->setSpaces( $space_collection );
+        // $space_mapper = new SpaceMapper();
+        // $space_collection = $space_mapper->findByVenue( $array['id'] );
+        // $obj->setSpaces( $space_collection );
         return $obj;
     }
 
@@ -53,7 +53,7 @@ class VenueMapper extends Mapper {
   
     function selectAllStmt() {
         return $this->selectAllStmt;
-    }
+    } 
 }
 
 ?>

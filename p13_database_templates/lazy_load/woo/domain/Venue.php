@@ -11,13 +11,11 @@ class Venue extends DomainObject {
 
     function __construct( $id = null, $name = null ) {
         $this->name = $name;
-        $this->spaces = self::getCollection("\woo\domain\Space");
         parent::__construct( $id );
     }
 
     function setSpaces( SpaceCollection $spaces ) {
         $this->spaces = $spaces;
-        $this->markDirty();
     }
 
     function getSpaces() {
@@ -29,9 +27,8 @@ class Venue extends DomainObject {
     }
 
     function addSpace(Space $space) {
-        $this->spaces->add( $space );
+        $this->getSpaces()->add( $space );
         $space->setVenue( $this );
-        $this->markDirty();
     }
 
     function setName( $name_s ) {
@@ -41,6 +38,16 @@ class Venue extends DomainObject {
 
     function getName() {
         return $this->name;
+    }
+  
+    static function find( $id ) {
+        $finder = self::getFinder( __CLASS__ );
+        return $finder->find( $id );
+    }
+
+    static function findAll() {
+        $finder = self::getFinder( __CLASS__ );
+        return $finder->findAll();
     }
 }
 

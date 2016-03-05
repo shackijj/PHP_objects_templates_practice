@@ -1,6 +1,6 @@
 <?php
-    require_once( "woo/base/Registry.php" );
-    $request = \woo\base\ApplicationRegistry::getRequest();
+    require_once( "woo/view/ViewHelper.php" );
+    $request = \woo\view\ViewHelper::getRequest();
 ?>
 <html>
 <head>

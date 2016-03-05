@@ -32,7 +32,6 @@ abstract class DomainObject {
     }
 
     static function getFinder( $type=null ) {
-        print "Get finder for {$type}\n";
         if ( is_null( $type ) ) {
             return HelperFactory::getFinder( get_called_class() );
         }

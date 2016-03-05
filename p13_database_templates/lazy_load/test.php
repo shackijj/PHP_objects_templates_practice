@@ -10,16 +10,7 @@ $helper->init();
 
 $finder = \woo\domain\Space::getFinder();
 
-$space = $finder->find( 1 );
+$space = $finder->find( 5 );
 
-$space->addEvent(
-    new \woo\domain\Event( null, "First Event" );
-);
-
-$space->addEvent( 
-    new \woo\domain\Event( null, "Second Event" )
-);
-
-\woo\domain\ObjectWatcher::instance()->performOperations();
-
+print_r( $space );
 ?>

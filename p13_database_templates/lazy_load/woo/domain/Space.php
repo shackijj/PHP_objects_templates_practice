@@ -13,20 +13,18 @@ class Space extends DomainObject{
     private $events;
 
     function __construct( $id, $name ) {
+        parent::__construct( $id );
         $this->name = $name;
-        $this->events = self::getCollection("woo\domain\Event");
-        parent::__construct( $id );       
+        $this->events = null;       
     }
 
     function addEvent( \woo\domain\Event $event ) {
         $this->events->add( $event );
-        $this->markDirty();
         $event->setSpace( $this );
     }    
 
     function setEvents( EventCollection $events ) {
         $this->events = $events;
-        $this->markDirty();
     }
 
     function getEvents() {
@@ -48,7 +46,7 @@ class Space extends DomainObject{
 
     function setVenue( \woo\domain\Venue $venue ) {
         $this->venue_obj = $venue;  
-        $this->markDirty();      
+        $this->markDirty();
     }
 
     function getVenue() {

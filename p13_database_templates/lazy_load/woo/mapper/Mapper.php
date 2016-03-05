@@ -30,6 +30,7 @@ abstract class Mapper {
         if ( ! is_array( $array ) ) { return null; }
         if ( ! isset( $array['id'] ) ) { return null; }
         $object = $this->createObject( $array );
+        $object->markClean();
         return $object;
     }
 
@@ -45,13 +46,14 @@ abstract class Mapper {
         
         $obj = $this->doCreateObject( $array );
         $this->addToMap( $obj );
-        $obj->markClean();
+        //$obj->markClean();
         return $obj;
     }
 
     function insert( \woo\domain\DomainObject $obj ) {
         $this->doInsert( $obj );
         $this->addToMap( $obj );
+        $obj->markClean();
     }
 
     private function getFromMap( $id ) {

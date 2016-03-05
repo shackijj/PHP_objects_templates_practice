@@ -1,13 +1,12 @@
 <config>
-        <dsn>sqlite://home/kirill/learn_php/p13_database_templates/lazy_load/woo.db</dsn>
+        <dsn>sqlite://var/www/test-server/woo.db</dsn>
 	<control>
 		<view>main</view>
 		<view status="CMD_OK">main</view>
 		<view status="CMD_ERROR">error</view>
 
 		<command name="ListVenues">
-                        <classroot name="ListVenues" />
-			<view>listvenues</view>
+			<view>list_venues</view>
 		</command>
 
 		<command name="QuickAddVenue">
@@ -16,7 +15,6 @@
 		</command>
 
 		<command name="AddVenue">
-                        <classroot name="AddVenue"/>
 			<view>add_venue</view>
 			<status value="CMD_OK">
 				<forward>AddSpace</forward>
@@ -24,7 +22,6 @@
 		</command>
 
 		<command name="AddSpace">
-                        <classroot name="AddSpace" />
 			<view>add_space</view>
 			<status value="CMD_OK">
 				<forward>ListVenues</forward>

@@ -70,7 +70,8 @@ class ApplicationHelper {
                 }
             }
         } 
-        \woo\base\ApplicationRegistry::setControllerMap( $map );    
+        
+        \woo\base\ApplicationRegistry::setControllerMap( $map );
     }
 
     private function ensure( $expr, $message ) {

@@ -44,13 +44,18 @@ class RequestRegistry extends Registry {
     }
 
     static function getRequest() {
-        $inst = self::$instance();
+        $inst = self::instance();
         if ( is_null( $inst->get("request") ) ) {
             $inst->set('request', new \woo\controller\Request() );
         }
 
         return $inst->get("request");
     }
+
+    static function setRequest( \woo\controller\Request $request ) {
+        return self::instance()->set('request', $request);
+    }
+
 }
 
 class SessionRegistry extends Registry {
@@ -140,27 +145,21 @@ class ApplicationRegistry extends Registry {
     }
 
     static function setControllerMap( \woo\controller\ControllerMap $map ) {
-       $inst = self::instance();
-       if ( is_null( $inst->app_controller ) ) {
-           $inst->app_controller = new \woo\controller\AppController( $map );
-       }
+       return self::instance()->set('cmap', $map);
+       
+    }
+
+    static function getControllerMap() {
+        return self::instance()->get('cmap');
     }
 
     static function appController() {
        $inst = self::instance();
        if ( is_null( $inst->app_controller ) ) {
-           throw new \Exception("App controller is not set");
+           $cmap = $inst->getControllerMap();
+           $inst->app_controller = new \woo\controller\AppController( $cmap );
        }
        return $inst->app_controller;
-    }
-
-    static function getRequest() {
-        $inst = self::instance();
-        if ( is_null( $inst->request ) ) {
-            $inst->request = new \woo\controller\Request();
-        }
-
-        return $inst->request;
     }
 }
 

@@ -3,11 +3,15 @@
 namespace woo\controller;
 
 class Request {
+    private $objects = array();
     private $properties = array();
     private $feedback = array();
+    private $appreg;
+    private $lastCommand;
 
     function __construct() {
         $this->init();
+        \woo\base\RequestRegistry::setRequest( $this );
     }
 
     function init() {
@@ -38,20 +42,23 @@ class Request {
         array_push( $this->feedback, $msg );
     }
 
-    function setCommand( $command ) {
-        $this->setProperty('LAST_COMMAND', $command );
+    function setCommand( \woo\command\Command $command ) {
+        $this->lastCommand = $command;
     }
 
     function getObject( $name ) {
-        return $this->getProperty( $name );
+        if ( isset( $this->objects[$name] ) ) {
+            return $this->objects[$name];
+        } 
+        return null;
     }
 
     function setObject( $name, $obj ) {
-        $this->setProperty($name, $obj);
+        $this->objects[$name] = $obj;
     }
 
     function getLastCommand() {
-        return $this->getProperty('LAST_COMMAND');
+        return $this->lastCommand;
     }
 
     function getFeedback() {

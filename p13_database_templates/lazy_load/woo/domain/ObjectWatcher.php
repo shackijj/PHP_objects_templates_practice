@@ -10,12 +10,12 @@ class ObjectWatcher {
     private $new    = array();
     private $delete = array();
     
-    private static $instance=null;
+    private static $instance;
 
     private function __construct() {}
 
     static function instance() {
-        if ( is_null(self::$instance) ) {
+        if ( ! self::$instance ) {
             self::$instance = new ObjectWatcher();
         }
         return self::$instance;
@@ -49,13 +49,14 @@ class ObjectWatcher {
     }
 
     function performOperations() {
+
         foreach( $this->dirty as $key=>$obj ) {
             $obj->finder()->update( $obj );
-            print "Updating {$obj->getName()}\n";
+            // print "Updating {$obj->getName()}\n";
         }
         foreach( $this->new as $key=>$obj ) {
             print "Inserting {$obj->getName()}\n";
-            $obj->finder()->insert( $obj );
+            // $obj->finder()->insert( $obj );
         }
         $this->dirty = array();
         $this->new   = array();

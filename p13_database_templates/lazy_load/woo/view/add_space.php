@@ -4,6 +4,7 @@
     $venue = $request->getObject('venue');
 ?>
 
+
 <html>
   <head>
     <title>Add space to the venue '<?php echo $venue->getName() ?>'</title>
@@ -11,7 +12,7 @@
 
   <body>
 
-    <h1>Add space to the venue '<?php echo $venue->getName() ?>'</h1>
+    <h1>Add space to the venue '<?php echo $venue->getName(); echo $venue->getId();?>'</h1>
  
     <table>
       <tr>
@@ -27,6 +28,7 @@
              name="space_name" />
       <input type="hidden" name="venue_id"
              value="<?php print $venue->getId(); ?>" />
+      <input type="hidden" name="cmd" value="AddSpace">
       <input type="submit" value="submit" />
     </form>
 
