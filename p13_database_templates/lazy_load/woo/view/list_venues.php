@@ -13,13 +13,19 @@
 
     <h1>Venues</h1>
  
-    <table>
     <?php
       foreach( $venues as $venue ) {
     ?>
-      <tr>
-        <td> <?php print $venue->getName(); ?></td>
-      </tr>
+      <div> 
+      <h3> <?php print $venue->getName(); ?></h3>
+      <?php $spaces = $venue->getSpaces(); ?>
+      <ul>
+          <?php foreach( $spaces as $space ) { ?>
+              <li> <?php print $space->getName(); ?> </li>
+             
+          <?php } ?>
+      </ul>
+      </div>
     <?php
     }
     ?>

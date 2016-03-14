@@ -59,8 +59,7 @@ class EventMapper extends Mapper {
     }
 
     function findBySpaceId( $sid ) {
-        $this->findBySpaceStmt->execute( array($vid) );
-        return new EventCollection( $this->findByVenueStmt->fetchAll(), $this );
+        return new DeferredEventCollection( $this, $this->selectStmt, array( $sid ) );
     }
 
     function selectAllStmt() {
