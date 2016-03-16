@@ -59,9 +59,13 @@ class EventMapper extends Mapper {
     }
 
     function findBySpaceId( $sid ) {
+<<<<<<< HEAD
         return new DeferredEventCollection( $this,
                                             $this->selectBySpaceStmt,
                                             array( $sid ) );  
+=======
+        return new DeferredEventCollection( $this, $this->selectStmt, array( $sid ) );
+>>>>>>> lazy_load
     }
 
     function selectAllStmt() {
