@@ -17,21 +17,7 @@ class VenueMapper extends Mapper {
                             "SELECT * FROM venue");
     }
 
-    function getCollection( array $raw ) {
-        $factory = $this->getFactory()->getDomainObjectFactory();
-        return new VenueCollection( $raw, $factory );
-    }
-
-    protected function doCreateObject( array $array ) {
-        $obj = new \woo\domain\Venue( $array['id'] );
-        $obj->setName( $array['name'] );
-        // $space_mapper = new SpaceMapper();
-        // $space_collection = $space_mapper->findByVenue( $array['id'] );
-        // $obj->setSpaces( $space_collection );
-        return $obj;
-    }
-
-    protected function doInsert( \woo\domain\DomainObject $object ) {
+   protected function doInsert( \woo\domain\DomainObject $object ) {
         $values = array( $object->getName() );
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();

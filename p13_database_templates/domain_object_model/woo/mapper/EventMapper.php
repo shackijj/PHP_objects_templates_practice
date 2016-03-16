@@ -20,15 +20,6 @@ class EventMapper extends Mapper {
                             "SELECT * FROM event WHERE space=?");
     }
 
-    function getCollection( array $raw ) {
-        return new SpaceCollection( $raw, $this );
-    }
-
-    protected function doCreateObject( array $array ) {
-        $obj = new \woo\domain\Space( $array['name'], $array['space'] );
-        return $obj;
-    }
-
     protected function doInsert( \woo\domain\DomainObject $object ) {
         $space = $object->getSpace();
         if ( ! $space ) {

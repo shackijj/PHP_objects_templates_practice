@@ -20,23 +20,6 @@ class SpaceMapper extends Mapper {
                             "SELECT * FROM space WHERE venue=?");
     }
 
-    function getCollection( array $raw ) {
-        return new SpaceCollection( $raw, $this );
-    }
-
-    protected function doCreateObject( array $array ) {
-        $obj = new \woo\domain\Space( $array['id'], $array['name'] );
-        $obj->setName( $array['name'] );
-        $ven_mapper = new VenueMapper();
-        $venue = $ven_mapper->find( $array['venue'] );
-
-        $obj->setVenue( $venue );
-        $event_mapper = new EventMapper();
-        $event_collection = $event_mapper->findBySpaceId( $array['id'] );
-        $obj->setEvents( $event_collection );
-        return $obj;
-    }
-
     protected function doInsert( \woo\domain\DomainObject $object ) {
         $venue = $object->getVenue();
         if ( ! $venue ) {

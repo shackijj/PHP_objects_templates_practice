@@ -38,8 +38,8 @@ abstract class Mapper {
 
     function findAll() {
         $this->selectAllStmt()->execute( array() );
-        return $this->getCollection(
-               $this->selectAllStmt()->fetchAll( \PDO::FETCH_ASSOC ) );
+        $factory = $this->getFactory();
+        return $factory->getCollection( $this->selectAllStmt()->fetchAll( \PDO::FETCH_ASSOC ) );
     }
 
     function createObject( $array ) {
@@ -67,8 +67,6 @@ abstract class Mapper {
     }
 
     abstract function update( \woo\domain\DomainObject $object );
-    protected abstract function getCollection( array $raw );
-    protected abstract function doCreateObject( array $array );
     protected abstract function doInsert( \woo\domain\DomainObject $object );
     protected abstract function selectStmt();
     protected abstract function selectAllStmt();
