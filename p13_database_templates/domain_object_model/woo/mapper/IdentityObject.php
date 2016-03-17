@@ -72,8 +72,7 @@ class IdentityObject {
     function getComps() {
         $comparisons = array();
         foreach( $this->fields as $key => $field ) {
-            // Whar is ret? It's undefined
-            $comparisons = array_merge( $ret, $field->getComps() );
+            $comparisons = array_merge( $comparisons, $field->getComps() );
         }
         return $comparisons;
     }
