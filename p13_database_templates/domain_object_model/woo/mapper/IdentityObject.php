@@ -27,7 +27,7 @@ class IdentityObject {
             throw new \Exception( "Incomplete field." );
         }
         $this->enforceField( $fieldname );
-        if ( isset( $this->fields[$fieldname] ) {
+        if ( isset( $this->fields[$fieldname] ) ) {
             $this->currentfield = new Field( $fieldname );
         } else {
             $this->currentfield = new Field( $fieldname );
@@ -43,7 +43,7 @@ class IdentityObject {
     function enforceField( $fieldname ) {
         if ( ! in_array( $fieldname, $this->enforce ) &&
              ! empty( $this->enforce ) ) {
-             $forcelist = implode( ', ' $this->enforce );
+             $forcelist = implode( ', ', $this->enforce );
              throw new \Exception( "{$fieldname} is not correct field
                  {$forcelist}");
         }

@@ -1,6 +1,8 @@
 <?php
 
-class Fields {
+namespace woo\mapper;
+
+class Field {
     protected $name = null;
     protected $operator = null;
     protected $comps = array();
