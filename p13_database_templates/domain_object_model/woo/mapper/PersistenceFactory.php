@@ -22,6 +22,8 @@ abstract class PersistenceFactory {
 
     abstract function getCollection( array $raw );
     abstract function getDomainObjectFactory();
+    abstract function getSelectionFactory();
+    abstract function getUpdateFactory();
 }
 
 class SpacePersistenceFactory extends PersistenceFactory {
@@ -31,6 +33,14 @@ class SpacePersistenceFactory extends PersistenceFactory {
 
     public function getDomainObjectFactory() {
         return new SpaceDomainObjectFactory();
+    }
+
+    public function getSelectionFactory() {
+        return new SpaceSelectionFactory();
+    }
+
+    public function getUpdateFactory() {
+        return new SpaceUpdateFactory();
     }
 }
 
@@ -42,6 +52,14 @@ class VenuePersistenceFactory extends PersistenceFactory {
     public function getDomainObjectFactory() {
         return new VenueDomainObjectFactory();
     }
+
+    public function getSelectionFactory() {
+        return new VenueSelectionFactory();
+    }
+
+    public function getUpdateFactory() {
+        return new VenueUpdateFactory();
+    }
 }
 
 class EventPersistenceFactory extends PersistenceFactory {
@@ -51,6 +69,13 @@ class EventPersistenceFactory extends PersistenceFactory {
 
     public function getDomainObjectFactory() {
         return new EventDomainObjectFactory();
+    }
+    public function getSelectionFactory() {
+        return new EventSelectionFactory();
+    }
+
+    public function getUpdateFactory() {
+        return new EventUpdateFactory();
     }
 }
 
