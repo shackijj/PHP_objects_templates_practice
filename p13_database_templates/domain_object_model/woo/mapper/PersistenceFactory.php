@@ -4,6 +4,13 @@ namespace woo\mapper;
 
 require_once( "woo/mapper/Collections.php" );
 require_once( "woo/mapper/DomainObjectFactory.php" );
+require_once( "woo/mapper/VenueUpdateFactory.php" );
+require_once( "woo/mapper/VenueSelectionFactory.php" );
+require_once( "woo/mapper/SpaceUpdateFactory.php" );
+require_once( "woo/mapper/SpaceSelectionFactory.php" );
+require_once( "woo/mapper/EventUpdateFactory.php" );
+require_once( "woo/mapper/EventSelectionFactory.php" );
+require_once( "woo/mapper/IdentityObjects.php" );
 
 abstract class PersistenceFactory {
     public static function getFactory( $typestr ) {
@@ -20,6 +27,7 @@ abstract class PersistenceFactory {
         }
     }
 
+    abstract function getIdentityObject();  
     abstract function getCollection( array $raw );
     abstract function getDomainObjectFactory();
     abstract function getSelectionFactory();
@@ -42,6 +50,10 @@ class SpacePersistenceFactory extends PersistenceFactory {
     public function getUpdateFactory() {
         return new SpaceUpdateFactory();
     }
+
+    public function getIdentityObject() {
+        return new SpaceIdentityObject();
+    }
 }
 
 class VenuePersistenceFactory extends PersistenceFactory {
@@ -60,6 +72,11 @@ class VenuePersistenceFactory extends PersistenceFactory {
     public function getUpdateFactory() {
         return new VenueUpdateFactory();
     }
+
+    public function getIdentityObject() {
+        return new VenueIdentityObject();
+    }
+
 }
 
 class EventPersistenceFactory extends PersistenceFactory {
@@ -77,7 +94,11 @@ class EventPersistenceFactory extends PersistenceFactory {
     public function getUpdateFactory() {
         return new EventUpdateFactory();
     }
-}
 
+    public function getIdentityObject() {
+        return new EventIdentityObject();
+    }
+
+}
 
 ?>

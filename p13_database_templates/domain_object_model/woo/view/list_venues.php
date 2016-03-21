@@ -24,5 +24,5 @@
     }
     ?>
     </table>
-
+  </body>
 <html>

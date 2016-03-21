@@ -2,7 +2,7 @@
 
 namespace woo\mapper;
 
-require_once( "woo/mapper/PersistentFactory.php" );
+require_once( "woo/mapper/PersistenceFactory.php" );
 require_once( "woo/base/Registry.php" );
 
 class DomainObjectAssembler {
@@ -35,7 +35,7 @@ class DomainObjectAssembler {
 
     function find( IdentityObject $idobj ) {
         $selfact = $this->factory->getSelectionFactory();
-        list( $selection, $values ) = selfact->newSelection( $idobj );
+        list( $selection, $values ) = $selfact->newSelection( $idobj );
         $stmt = $this->getStatement( $selection );
         $stmt->execute( $values );
         $raw = $stmt->fetchAll();

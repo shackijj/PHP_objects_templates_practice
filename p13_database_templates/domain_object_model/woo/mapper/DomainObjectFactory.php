@@ -27,6 +27,7 @@ class VenueDomainObjectFactory extends DomainObjectFactory {
         $obj = new $class( $array['id'] );
         $obj->setName( $array['name'] );
         $this->addToMap( $obj );
+        $obj->markClean();
         return $obj;
     }
 }
@@ -40,14 +41,30 @@ class SpaceDomainObjectFactory extends DomainObjectFactory {
         $obj = new $class( $array['id'], $array['name'] );
         $obj->setName( $array['name'] );
 
-        $venue_mapper = new VenueMapper();
-        $venue = $venue_mapper->find( $array['venue'] );
+        //$venue_mapper = new VenueMapper();
+        //$venue = $venue_mapper->find( $array['venue'] );
          
-        $event_mapper = new EventMapper();
-        $events_collection = $event_mapper->findBySpaceId( $array['id'] );
-        $obj->setEvents( $event_collection );
+        // $event_mapper = new EventMapper();
+        // $events_collection = $event_mapper->findBySpaceId( $array['id'] );
+        // $obj->setEvents( $event_collection );
 
-        $this->addToMap( $obj );
+        $factory = PersistentFactory::getFactory( "woo\\domain\\Venue" );
+        $finder = new \woo\mapper\DomainObjectAssembler( $factory );
+        $idobj = $factory->getIdentityObject()->field('id')->eq( $array['venue']); 
+        $venue = $finder->findOne( $idObj );
+        $obj->setVenue( $obj );
+        
+
+        $factory = PersistentFactory::getFactory( "woo\\domain\\Event" );
+        $finder = new \woo\mapper\DomainObjectAssembler( $factory );
+        $idobj = new $factory->getIdentityObject->field('space')->eq($array['id']);
+        $event_collection = $find->find( $idobj );
+        $obj->setEvents( $event_collection );
+        $obj->markClean();
+
+        // $this->addToMap( $obj );
+        // Why don't we save it?
+        
         return $obj;
     }
 }
@@ -61,15 +78,22 @@ class EventDomainObjectFactory extends DomainObjectFactory {
         $obj = new $class( $array['id'], $array['name'] );
         $obj->setName( $array['name'] );
 
-        $space_mapper = new SpaceMapper();
-        $space = $space_mapper->find( $array['space'] );
+        // $space_mapper = new SpaceMapper();
+        // $space = $space_mapper->find( $array['space'] );
+
+        $factory = PersistentFactory::getFactory( "woo\\domain\\Space" );
+        $finder = new \woo\mapper\DomainObjectAssembler( $factory );
+        $idobj = $factory->getIdentityObject()->field('id')->eq( $array['space']); 
+        $space = $finder->findOne( $idObj );
+
         $obj->setSpace( $space );
         
         $obj->setStart( $array['start'] );
         $obj->setDuration( $array['duration'] );
-        
-        $this->addToMap( $obj );
+        $obj->markClean();       
+        // $this->addToMap( $obj );
         return $obj;
     }
 }
+
 ?>
