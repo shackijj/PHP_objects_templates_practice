@@ -2,10 +2,14 @@
 
 namespace woo\mapper;
 
-require_once( "woo/mapper/IdentityObject.php" );
+require_once( "woo/mapper/VenueSelectionFactory.php" );
+require_once( "woo/mapper/IdentityObjects.php" );
+require_once( "woo/domain/Venue.php" );
 
-$idobj = new IdentityObject();
+$vsf = new VenueSelectionFactory();
+$vio = new VenueIdentityObject();
 
-$idobj->field("name")->eq("The good show");
+$vio->field("name")->eq("The Happy Hairband");
 
-print_r( $idobj->getComps() );
+print_r( $vsf->newSelection( $vio ) );
+?>

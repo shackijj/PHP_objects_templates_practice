@@ -1,6 +1,6 @@
 <?php
 
-namespace woo/mapper;
+namespace woo\mapper;
 
 require_once( "woo/mapper/IdentityObject.php" );
 
