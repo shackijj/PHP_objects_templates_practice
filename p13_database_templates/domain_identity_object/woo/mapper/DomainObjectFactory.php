@@ -50,14 +50,14 @@ class SpaceDomainObjectFactory extends DomainObjectFactory {
 
         $factory = PersistentFactory::getFactory( "woo\\domain\\Venue" );
         $finder = new \woo\mapper\DomainObjectAssembler( $factory );
-        $idobj = $factory->getIdentityObject()->field('id')->eq( $array['venue']); 
+        $idobj = $factory->getIdentityObject()->field('id')->eq( $array['venue'] ); 
         $venue = $finder->findOne( $idObj );
         $obj->setVenue( $obj );
         
 
         $factory = PersistentFactory::getFactory( "woo\\domain\\Event" );
         $finder = new \woo\mapper\DomainObjectAssembler( $factory );
-        $idobj = new $factory->getIdentityObject->field('space')->eq($array['id']);
+        $idobj = $factory->getIdentityObject()->field('space')->eq($array['id']);
         $event_collection = $find->find( $idobj );
         $obj->setEvents( $event_collection );
         $obj->markClean();

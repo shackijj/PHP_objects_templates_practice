@@ -1,0 +1,28 @@
+<?php
+
+namespace woo\mapper;
+
+require_once( "woo/mapper/IdentityObject.php" );
+
+class EventIdentityObject extends IdentityObject {
+    function __construct( $field=null ) {
+        parent::__construct( $field,
+           array( 'name', 'id', 'start', 'duration', 'space'));
+    }
+}
+
+class VenueIdentityObject extends IdentityObject {
+    function __construct( $field=null ) {
+        parent::__construct( $field,
+            array( 'name', 'id' ));
+    }
+}
+
+class SpaceIdentityObject extends IdentityObject {
+    function __construct( $field=null ) {
+        parent::__construct( $field,
+            array( 'name', 'id', 'venue' ));
+    }
+}
+
+?>
