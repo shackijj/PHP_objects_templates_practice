@@ -1,0 +1,31 @@
+<config>
+        <dsn>sqlite://var/www/test-server/woo.db</dsn>
+	<control>
+		<view>main</view>
+		<view status="CMD_OK">main</view>
+		<view status="CMD_ERROR">error</view>
+
+		<command name="ListVenues">
+			<view>list_venues</view>
+		</command>
+
+		<command name="QuickAddVenue">
+			<classroot name="AddVenue" />
+			<view>quick_add</view>
+		</command>
+
+		<command name="AddVenue">
+			<view>add_venue</view>
+			<status value="CMD_OK">
+				<forward>AddSpace</forward>
+			</status>
+		</command>
+
+		<command name="AddSpace">
+			<view>add_space</view>
+			<status value="CMD_OK">
+				<forward>ListVenues</forward>
+			</status>
+		</command>
+	</control>
+</config>
