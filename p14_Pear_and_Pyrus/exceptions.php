@@ -1,6 +1,6 @@
 <?php
-require_once( "XML_Feed_Parser.php" );
-
+require_once( "XML/Feed/Parser.php" );
+require_once( "PEAR/Exception.php" );
 /*
      print "Message: " . $e->getMessage() . "\n";
             print "Code: " . $e->getCode() . "\n";
@@ -41,6 +41,21 @@ class MyFeedClient {
     }
 
     function notifyError( PEAR_Exception $e ) {
-        // Write another thing
+        print get_class( $e ) . ":";
+        print $e->getMessage() . "\n";
+        $cause = $e->getCause();
+        if ( is_object( $cause ) ) {
+            print "[REASON] " . get_class( $cause ) . ":";
+            print $cause->getMessage() . "\n";
+        } else if ( is_array( $cause ) ) {
+            foreach( $cause as $sub_e ) {
+                print "[REASON] " . get_class( $sub_e ) . ":";
+                print $sub_e->getMessage() . "\n";
+            }
+        }
+        print "-----------------\n";
     }
 }
+
+$client = new MyFeedClient();
+$client->process();
