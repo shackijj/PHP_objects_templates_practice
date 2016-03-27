@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project title="Mega Quiz" version="2.8.5">
+  <partials/>
+  <file path="command.php" generated-path="command.html" hash="1bf5f32617456fa750955d2b5fe0ef6b" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <class final="false" abstract="true" namespace="megaquiz\command" line="17" package="Default">
+      <extends/>
+      <name>Command</name>
+      <full_name>\megaquiz\command\Command</full_name>
+      <docblock line="17">
+        <description>Define core functionality for commands.</description>
+        <long-description>Command classes perform specific tasks in a a system via
+execute() method.</long-description>
+        <tag name="package" line="17" description="Default"/>
+      </docblock>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="megaquiz\command" line="23" package="Default">
+        <name>execute</name>
+        <full_name>\megaquiz\command\Command::execute()</full_name>
+        <docblock line="23">
+          <description>execute specific task</description>
+          <long-description></long-description>
+          <tag name="param" line="23" description="&lt;p&gt;CommandContext Shared contextual data&lt;/p&gt;" type="" variable="$context"/>
+          <tag name="return" line="23" description="false on failure, true on success" type="boolean">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$context</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <class final="false" abstract="false" namespace="megaquiz\command" line="35" package="Default">
+      <extends/>
+      <name>CommandContext</name>
+      <full_name>\megaquiz\command\CommandContext</full_name>
+      <docblock line="35">
+        <description>Encapsulate data for passing to, from and between Commands.</description>
+        <long-description>CommandContext object is passed ti the command context.
+blabla</long-description>
+        <tag name="see" line="35" description="Bla" link="\megaquiz\command\Command::execute()"/>
+        <tag name="package" line="35" description="Default"/>
+      </docblock>
+      <property static="false" visibility="public" namespace="megaquiz\command" line="42" package="Default">
+        <name>$applicationName</name>
+        <full_name>\megaquiz\command\CommandContext::applicationName</full_name>
+        <default></default>
+        <docblock line="42">
+          <description>The app name
+used by various clients for error messages etc.</description>
+          <long-description></long-description>
+          <tag name="var" line="42" description="" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="megaquiz\command" line="49" package="Default">
+        <name>$params</name>
+        <full_name>\megaquiz\command\CommandContext::params</full_name>
+        <default>array()</default>
+        <docblock line="49">
+          <description>Encapsulated Keys/Velues
+This class is essesnsially a wrapper for this array</description>
+          <long-description></long-description>
+          <tag name="var" line="49" description="" type="array" variable="">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="megaquiz\command" line="55" package="Default">
+        <name>$error</name>
+        <full_name>\megaquiz\command\CommandContext::error</full_name>
+        <default>""</default>
+        <docblock line="55">
+          <description>An error message</description>
+          <long-description></long-description>
+          <tag name="var" line="55" description="" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="megaquiz\command" line="57" package="Default">
+        <name>__construct</name>
+        <full_name>\megaquiz\command\CommandContext::__construct()</full_name>
+        <docblock line="57">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="megaquiz\command" line="61" package="Default">
+        <name>addParam</name>
+        <full_name>\megaquiz\command\CommandContext::addParam()</full_name>
+        <docblock line="61">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$val</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="megaquiz\command" line="65" package="Default">
+        <name>get</name>
+        <full_name>\megaquiz\command\CommandContext::get()</full_name>
+        <docblock line="65">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="megaquiz\command" line="72" package="Default">
+        <name>setError</name>
+        <full_name>\megaquiz\command\CommandContext::setError()</full_name>
+        <docblock line="72">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$error</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="megaquiz\command" line="76" package="Default">
+        <name>getError</name>
+        <full_name>\megaquiz\command\CommandContext::getError()</full_name>
+        <docblock line="76">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="57" code="PPC:ERR-50008">No summary for method __construct()</error>
+      <error line="61" code="PPC:ERR-50015">Argument $key is missing from the Docblock of addParam</error>
+      <error line="61" code="PPC:ERR-50015">Argument $val is missing from the Docblock of addParam</error>
+      <error line="61" code="PPC:ERR-50008">No summary for method addParam()</error>
+      <error line="65" code="PPC:ERR-50015">Argument $key is missing from the Docblock of get</error>
+      <error line="65" code="PPC:ERR-50008">No summary for method get()</error>
+      <error line="72" code="PPC:ERR-50015">Argument $error is missing from the Docblock of setError</error>
+      <error line="72" code="PPC:ERR-50008">No summary for method setError()</error>
+      <error line="76" code="PPC:ERR-50008">No summary for method getError()</error>
+    </parse_markers>
+    <source>eJx1VE1z0zAQvftX7HR8SDqluTcUCiUnZhighQtlOmtlnYjKstFHWsP0v3dlWaIOqZKJbe2+p7e7z3n9ttt2hcaGbIeCoKEN/vbyz41omwb1elkUi+PjAo7heist8LeWisB6jpqe90PogqF3uCEYQXF7kaEfqJY6RA1B7bVwstWopOuhbk0C2dOQehkfQCi0lix0ZDinAduRkLUU4NDesQ4NyB/bW0cN7CQGLD2Q8I5mc67Cbdv1adKBlXUGhYus+Yy/BfAaNIaVCaaHpSAXabCBUrTa0YNLLJfj49UWDbHu+OhRwRodZrAh542Gqm0V1KgsQav5Ripv6ASc8cOG9UKQtSNqMVyz+NS5XOe+hCxtviwei9z9lRbYWa+QKwuahqZ33AipN+DaE6hN20BoSEXunkgn3slE0iFt9YtYDBshUHDFToLb5tGnBgzQSiF/k0ksEdzs++tmpD87+zc9Xu8HGDtoMrGkYTq4YE0C7DoINh63fJBW9bBDI1tvefKStLND7WQM/7LjLXvWAjlxGlEj9oJBwE3n/kwm0flKsSlKPoqvGGbxiU9c7tvoWcPX8JF6u/hOylMaa3yTYmF8Q8Hn2kpUqmdL3xumJzMIdSERjcF+hGY7BYXPA6NAI3dhyuVgVQvnMWc2/0/iOz3twiH+Qx1IB0TwORwd8R9EiGRz3t6yAxjqheNRxkmFVYZiXr3Jysrbr6sv31ZX11Hb4x4NrtefQ+oMyjvqT6Dc8Rv1It+PkPQzsHLaYcINucg1YZE1zHgIdggeYJxPssMaX+QDycuc91jsZWuvXpDFJ69CL2eppwdqTM2OGS+WF3me46daJ2jGPwFecspQ</source>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="global" full_name="global"/>
+  <namespace name="megaquiz" full_name="megaquiz">
+    <namespace name="command" full_name="megaquiz\command"/>
+  </namespace>
+  <deprecated count="0"/>
+</project>
