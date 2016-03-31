@@ -12,7 +12,16 @@
   <body>
 
     <h1>Venues</h1>
- 
+
+    <table>
+      <tr>
+        <td>
+        <?php print $request->getFeedbackString("</td></tr><td><tr>"); ?>
+        </td>
+      </tr>
+    </table>
+
+
     <table>
     <?php
       foreach( $venues as $venue ) {
