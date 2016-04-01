@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- build xml -->
+
+<project name="megaquiz" default="main">
+    <target name="main">
+        <copy todir="build/lib">
+            <fileset refid="srclib"/>
+            <filterchain>
+                <stripphpcomments />
+                <replacetokens>
+                    <token key="dbname" value="${dbname}" />
+                    <token key="dbhost" value="${dbhost}" />
+                    <token key="dbpass" value="${dbpass}" />
+                </replacetokens>
+            </filterchain>
+        </copy>
+    </target>
+
+    <fileset dir="src/lib" id="srclib">
+        <patternset refid="exc_code"/>
+        <patternset refid="inc_code"/>
+    </fileset>
+
+    <patternset id="exc_code">
+        <exclude name="**/*_test.php"/>
+        <exclude name="**/*Test.php"/>
+    </patternset>
+
+    <patternset id="inc_code">
+        <include name="**/*.php"/>
+    </patternset>
+</project>

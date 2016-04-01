@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- build xml -->
+
+<project name="megaquiz" default="main">
+    <target name="main"/>
+    <fileset dir="src/lib" id="srclib">
+        <exclude name="**/*_test.php"/>
+        <exclude name="**/*Test.php"/>
+        <include name="**/*.php"/>
+    </fileset>
+</project>
