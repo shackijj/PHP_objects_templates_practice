@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- build xml -->
+<project name="userthing" default="build">
+    <property name="build" value="./build"/>
+    <property name="src" value="./src"/>
+    <property name="version" value="1.1.1"/>
+
+    <target name="build">
+        <mkdir dir="${build}"/>
+        <copy todir="${build}/userthing">
+            <fileset dir="${src}/userthing/">
+            </fileset>
+        </copy>
+
+        <copy todir="${build}/test">
+            <fileset dir="${src}/test">
+            </fileset>
+        </copy>
+
+        <copy todir="${build}/vendor">
+            <fileset dir="${src}/vendor">
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build}"/>
+    </target>
+
+    <target name="test" depends="build">
+        <phpunit pharlocation="${build}/vendor/phpunit.phar">
+            <formatter type="plain" usefile="false"/>
+            <batchtest classpath="${build}">
+                <fileset dir="${build}/test">
+                    <include name="**/*Test.php"/>
+                </fileset>
+            </batchtest>
+        </phpunit>
+    </target>
+
+    <target name="doc" depends="build">
+        <mkdir dir="${build}/docs"/>
+        <exec executable="phpdoc" dir="${build}">
+            <arg line="--directory=userthing --target=docs --title=userthing
+                --template=abstract" />
+        </exec>
+    </target>
+
+</project>

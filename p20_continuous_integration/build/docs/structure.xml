@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project title="userthing" version="2.8.5">
+  <partials/>
+  <file path="util/Validator.php" generated-path="util.Validator.html" hash="3a4c87d8afb33b41b216ad449b3935a5" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="" line="5" package="Default">
+      <extends/>
+      <name>Validator</name>
+      <full_name>\Validator</full_name>
+      <docblock line="5">
+        <description></description>
+        <long-description></long-description>
+        <tag name="package" line="5" description="Default"/>
+      </docblock>
+      <property static="false" visibility="private" namespace="" line="6" package="Default">
+        <name>$store</name>
+        <full_name>\Validator::store</full_name>
+        <default></default>
+        <docblock line="6">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="8" package="Default">
+        <name>__construct</name>
+        <full_name>\Validator::__construct()</full_name>
+        <docblock line="8">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$store</name>
+          <default></default>
+          <type>\UserStore</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="12" package="Default">
+        <name>validateUser</name>
+        <full_name>\Validator::validateUser()</full_name>
+        <docblock line="12">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$mail</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$pass</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="5" code="PPC:ERR-50005">No summary for class \Validator</error>
+      <error line="8" code="PPC:ERR-50015">Argument $store is missing from the Docblock of __construct</error>
+      <error line="8" code="PPC:ERR-50008">No summary for method __construct()</error>
+      <error line="12" code="PPC:ERR-50015">Argument $mail is missing from the Docblock of validateUser</error>
+      <error line="12" code="PPC:ERR-50015">Argument $pass is missing from the Docblock of validateUser</error>
+      <error line="12" code="PPC:ERR-50008">No summary for method validateUser()</error>
+      <error line="6" code="PPC:ERR-50007">No summary for property $store</error>
+    </parse_markers>
+    <source>eJxtkMFOwzAMhu95CjP10EqMPQB03DhPQnCtsszdPJUkc5IhhPruxGvVdWI+2r++/0teXv3BK8V4SsTYOGuwXKSAHA9k9yuPHCjE1UfevEfH+JTji+pZKdPpEOBTd7TT+QC/CvJ4prOOCEWQcI7Jsk3WRHIWmsY4GyInE0uYkGMYqpEhU+T6sFwPh3rCyakfoD5tOzJX9nkwQcGWUHxp6h6h8CI5B1MLJTwAhcZtjygehbxWOmaVy/Ue44yUEdUNRoYxJrbQ6i6MajO9qeuCv/A22aWsoK7vaM14+Xvu424FrYvU/gjz2/HuLUsmxkn3Cvhv2ate/QGr9JM2</source>
+  </file>
+  <file path="domain/User.php" generated-path="domain.User.html" hash="f4830b0b8451dce3d1a3668bccdb1ffe" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="" line="3" package="Default">
+      <extends/>
+      <name>User</name>
+      <full_name>\User</full_name>
+      <docblock line="3">
+        <description></description>
+        <long-description></long-description>
+        <tag name="package" line="3" description="Default"/>
+      </docblock>
+      <property static="false" visibility="private" namespace="" line="4" package="Default">
+        <name>$name</name>
+        <full_name>\User::name</full_name>
+        <default></default>
+        <docblock line="4">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="" line="5" package="Default">
+        <name>$mail</name>
+        <full_name>\User::mail</full_name>
+        <default></default>
+        <docblock line="5">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="" line="6" package="Default">
+        <name>$pass</name>
+        <full_name>\User::pass</full_name>
+        <default></default>
+        <docblock line="6">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="" line="7" package="Default">
+        <name>$failed</name>
+        <full_name>\User::failed</full_name>
+        <default></default>
+        <docblock line="7">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="9" package="Default">
+        <name>__construct</name>
+        <full_name>\User::__construct()</full_name>
+        <docblock line="9">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$mail</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$pass</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="20" package="Default">
+        <name>getName</name>
+        <full_name>\User::getName()</full_name>
+        <docblock line="20">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="24" package="Default">
+        <name>getMail</name>
+        <full_name>\User::getMail()</full_name>
+        <docblock line="24">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="28" package="Default">
+        <name>getPass</name>
+        <full_name>\User::getPass()</full_name>
+        <docblock line="28">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="32" package="Default">
+        <name>failed</name>
+        <full_name>\User::failed()</full_name>
+        <docblock line="32">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$time</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="3" code="PPC:ERR-50005">No summary for class \User</error>
+      <error line="9" code="PPC:ERR-50015">Argument $name is missing from the Docblock of __construct</error>
+      <error line="9" code="PPC:ERR-50015">Argument $mail is missing from the Docblock of __construct</error>
+      <error line="9" code="PPC:ERR-50015">Argument $pass is missing from the Docblock of __construct</error>
+      <error line="9" code="PPC:ERR-50008">No summary for method __construct()</error>
+      <error line="20" code="PPC:ERR-50008">No summary for method getName()</error>
+      <error line="24" code="PPC:ERR-50008">No summary for method getMail()</error>
+      <error line="28" code="PPC:ERR-50008">No summary for method getPass()</error>
+      <error line="32" code="PPC:ERR-50015">Argument $time is missing from the Docblock of failed</error>
+      <error line="32" code="PPC:ERR-50008">No summary for method failed()</error>
+      <error line="4" code="PPC:ERR-50007">No summary for property $name</error>
+      <error line="5" code="PPC:ERR-50007">No summary for property $mail</error>
+      <error line="6" code="PPC:ERR-50007">No summary for property $pass</error>
+      <error line="7" code="PPC:ERR-50007">No summary for property $failed</error>
+    </parse_markers>
+    <source>eJx9UT1vwyAQ3fkVpygDkdJumZyPKVtbdekcUXKOkQggODeVKv/3gkkdbKl+E7p7793dY3twjQPGpBYhwEdADz8MIpxXX4IQlkZcsRqXrkLpSclF+aRURxaeK9ZX69ZIUtbA6SStCeRbSTybr7PhOpvA6r5AgqqBQyRrNHxob2EzIiVQ4+0NDN7g+C3R9ZP4iJGweEFzoQZsDb1XaGyrz/CJIAg0ikCweV6sqkHYseG5pEaFp31aGHZlKkWzN92VYRTNdGNqPsLrJtFckN6iLS+P80itN+X0f7Wv0XhGOzv3PW48o30cNNXmT46fQyoGUzrcpZmQDk+MP5OOHfbsFwexrlQ=</source>
+  </file>
+  <file path="persist/UserStore.php" generated-path="persist.UserStore.html" hash="3c222f06e11bfbea049544dfcb985cf5" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="" line="5" package="Default">
+      <extends/>
+      <name>UserStore</name>
+      <full_name>\UserStore</full_name>
+      <docblock line="5">
+        <description></description>
+        <long-description></long-description>
+        <tag name="package" line="5" description="Default"/>
+      </docblock>
+      <property static="false" visibility="private" namespace="" line="6" package="Default">
+        <name>$users</name>
+        <full_name>\UserStore::users</full_name>
+        <default>array()</default>
+        <docblock line="6">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="8" package="Default">
+        <name>addUser</name>
+        <full_name>\UserStore::addUser()</full_name>
+        <docblock line="8">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$mail</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$pass</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="24" package="Default">
+        <name>notifyPasswordFailure</name>
+        <full_name>\UserStore::notifyPasswordFailure()</full_name>
+        <docblock line="24">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$mail</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="30" package="Default">
+        <name>getUser</name>
+        <full_name>\UserStore::getUser()</full_name>
+        <docblock line="30">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$mail</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="5" code="PPC:ERR-50005">No summary for class \UserStore</error>
+      <error line="8" code="PPC:ERR-50015">Argument $name is missing from the Docblock of addUser</error>
+      <error line="8" code="PPC:ERR-50015">Argument $mail is missing from the Docblock of addUser</error>
+      <error line="8" code="PPC:ERR-50015">Argument $pass is missing from the Docblock of addUser</error>
+      <error line="8" code="PPC:ERR-50008">No summary for method addUser()</error>
+      <error line="24" code="PPC:ERR-50015">Argument $mail is missing from the Docblock of notifyPasswordFailure</error>
+      <error line="24" code="PPC:ERR-50008">No summary for method notifyPasswordFailure()</error>
+      <error line="30" code="PPC:ERR-50015">Argument $mail is missing from the Docblock of getUser</error>
+      <error line="30" code="PPC:ERR-50008">No summary for method getUser()</error>
+      <error line="6" code="PPC:ERR-50007">No summary for property $users</error>
+    </parse_markers>
+    <source>eJylkU1vwjAMhu/9FRZCWpAGnDjxddrOk6adpmnKiNtGatPOccYQ4r/PKS0brOKCL4mc168fO4t1nddJQvgZLOF75TaoBsEjcW5dNjVVqa2bvkhiIsLBaJ4km0J7DzH1zBUh7BOQqMl+aUYYxmIPS9BEeqdiQXxOg9uwrRxoY2KpgqHTJd7DUBoUctTRdNSaxbApKLDeI4tWaPx41Vi/NhVvov2rjsE5VVtwuIWH7w3WsZ06E3QxiASwb4wOkGsDH4iCVhBqswPCzHpGQjOJA3dVh+SczTMV6NQJfQGzG5CexGRbkbnzIK4Z51AGzwIGmiWj5T67wOlup0vfmpZN9ysrn/+ORciBHDAFPPY5XHyeq9imuw71UWwCoToa3vh5ParxKpUDjQK2JaoR/Jv+ki9Dbie9RtTT6j9Pu4sebd8XtGoXiqLbnLCtV8kP1MXvkA==</source>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="global" full_name="global"/>
+  <namespace name="global" full_name="global"/>
+  <deprecated count="0"/>
+</project>
