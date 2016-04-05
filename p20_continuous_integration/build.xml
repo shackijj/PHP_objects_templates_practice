@@ -38,6 +38,31 @@
         </phpunit>
     </target>
 
+    <target name="citest" depends="build">
+        <mkdir dir="${build}/reports/coverage" />
+
+        <coverage-setup database="${build}/reports/coverage.db">
+            <fileset dir="${build}/userthing">
+                <include name="**/test.php"/>
+            </fileset>
+        </coverage-setup>
+
+        <phpunit pharlocation="${build}/vendor/phpunit.phar" codecoverage="true">
+            <formatter type="plain" usefile="false"/>
+            <formatter type="xml" outfile="testreport.xml" todir="${build}/reports" />
+            <formatter type="clover" outfile="cloverreport.xml" todir="${build}/reports.xml" />
+            <batchtest classpath="${build}">
+                <fileset dir="${build}/test">
+                    <include name="**/*Test.php"/>
+                </fileset>
+            </batchtest>
+       </phpunit>
+
+       <coverage-report outfile="${build}/reports/coverage.xml" >
+            <report todir="${build}/reports/coverage" />
+       </coverage-report>
+    </target>
+
     <target name="doc" depends="build">
         <mkdir dir="${build}/docs"/>
         <exec executable="phpdoc" dir="${build}">
